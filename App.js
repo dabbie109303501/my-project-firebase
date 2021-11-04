@@ -7,8 +7,6 @@ const DisplayAnImage = () => {
     <View style={styles.container}>
         <Text>我是機二A的劭劭
         {"\n\n"}我喜歡拉拉熊熊~{"\n\n"}</Text>
-        
-        
         <Image
           style={styles.tinyLogo}
           source={{
@@ -16,7 +14,6 @@ const DisplayAnImage = () => {
           }}
         />
       </View>
-    
   );
 }
 export default DisplayAnImage;
@@ -32,9 +29,6 @@ const styles = StyleSheet.create({
   tinyLogo: {
     width: 350,
     height: 200,
-  },
-  space: {
-    flex: 2,
   },
 });
 
