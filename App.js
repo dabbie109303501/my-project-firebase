@@ -6,7 +6,7 @@ const DisplayAnImage = () => {
   return (
     <View style={styles.container}>
         <Text>我是機二A的劭劭
-        {"\n\n"}我喜歡拉拉熊熊~{"\n\n"}</Text>
+        {"\n\n"}我喜歡可愛的拉拉熊熊~{"\n\n"}</Text>
         <Image
           style={styles.tinyLogo}
           source={{
