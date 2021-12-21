@@ -18,6 +18,7 @@ async function getAllFruits() {
       ...doc.data(),
     });
   });
+  console.log(fruitsArray);
   return fruitsArray;
 }
 

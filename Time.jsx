@@ -14,32 +14,62 @@ function toDateString(time) {
 async function getLastestTime() {
   const db = firebase.firestore().collection('time');
   const getAllTime = await db.orderBy('time', 'desc').get();
-  const sortArray = [];
-  getAllTime.forEach((doc) => {
-    sortArray.push({
-      ...doc.data().time,
+  const outArray = [];
+  if (getAllTime.empty) {
+    const outputArray = [];
+    outputArray.push({
+      id: 0,
+      time: 'Time queue is empty.',
     });
-  });
-  console.log(toDateString(sortArray[0]));
+    console.log('Time queue is empty.');
+    outArray.push(outputArray[0]);
+  } else {
+    const sortArray = [];
+    getAllTime.forEach((doc) => {
+      sortArray.push({
+        id: doc.id,
+        ...doc.data(),
+      });
+    });
+    const outputArray = [];
+    for (let i = 0; i < sortArray.length; i += 1) {
+      outputArray.push({
+        id: sortArray[i].id,
+        time: toDateString(sortArray[i].time),
+      });
+    }
+    outArray.push(outputArray[0]);
+    console.log(outArray);
+  }
+  return outArray;
 }
 
 async function getAllTimes() {
   const db = firebase.firestore().collection('time');
   const getAllTime = await db.orderBy('time', 'desc').get();
+  const outputArray = [];
   if (getAllTime.empty) {
+    outputArray.push({
+      id: 0,
+      time: 'Time queue is empty.',
+    });
     console.log('Time queue is empty.');
   } else {
     const sortArray = [];
     getAllTime.forEach((doc) => {
       sortArray.push({
-        ...doc.data().time,
+        id: doc.id,
+        ...doc.data(),
       });
     });
     for (let i = 0; i < sortArray.length; i += 1) {
-      sortArray[i] = toDateString(sortArray[i]);
+      outputArray.push({
+        id: sortArray[i].id,
+        time: toDateString(sortArray[i].time),
+      });
     }
-    console.log(sortArray);
-  }
+    console.log(outputArray);
+  } return outputArray;
 }
 
 function addCurrentTime() {
